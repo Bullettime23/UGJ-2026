@@ -27,11 +27,11 @@ namespace CodeBase.InteractionSystem {
             InteractionRay();
             UpdateInterface();
 
-            if (m_Input.interact)
+            /*if (m_Input.interact)
             {
                 m_Input.interact = false;
                 Interact();
-            }
+            }*/
         }
 
         public void Interact()
