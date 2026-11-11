@@ -3,7 +3,7 @@ using LevGamekit.Infrastructure.StateMachine;
 
 namespace PackRush.Services.GameStates
 {
-    public interface LevelStateSwitcher : IService
+    public interface IGameStateSwitcher : IService
     {
         object CurrentState { get; }
 
@@ -12,6 +12,5 @@ namespace PackRush.Services.GameStates
         void Enter<TState>() where TState : class, IState;
         void Exit<TState>() where TState : class, IState;
         void UpdateTick<TState>() where TState : class, IState;
-
     }
 }

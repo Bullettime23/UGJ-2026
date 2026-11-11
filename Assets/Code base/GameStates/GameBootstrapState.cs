@@ -6,8 +6,8 @@ namespace PackRush.Services.GameStates
 {
     public class GameBootstrapState : IEnterableState, IService
     {
-        private LevelStateSwitcher gameStateSwitcher;
-        public GameBootstrapState(LevelStateSwitcher stateSwitcher)
+        private IGameStateSwitcher gameStateSwitcher;
+        public GameBootstrapState(IGameStateSwitcher stateSwitcher)
         {
             gameStateSwitcher = stateSwitcher;
         }
@@ -20,7 +20,7 @@ namespace PackRush.Services.GameStates
             // Sets FPS threshold
             Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.value;
 
-            gameStateSwitcher.Enter<LoadNextLevelState>();
+            //gameStateSwitcher.Enter<LoadNextLevelState>();
         }
     }
 }
