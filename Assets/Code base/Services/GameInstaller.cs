@@ -17,7 +17,7 @@ namespace PackRush.Services
         {
             print("Register services");
             AllServices.Container.RegisterSingle<ISceneLoader>(new SceneLoader(this));
-            AllServices.Container.RegisterSingle<LevelStateSwitcher>(new GameStateMachine());
+            AllServices.Container.RegisterSingle<IGameStateSwitcher>(new GameStateMachine());
         }
     }
 }

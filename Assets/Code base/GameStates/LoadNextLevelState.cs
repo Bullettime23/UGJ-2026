@@ -7,15 +7,17 @@ namespace PackRush.Services.GameStates
     public class LoadNextLevelState : IEnterableState, IService
     {
         private ISceneLoader sceneLoader;
+        private string levelName;
 
-        public LoadNextLevelState(ISceneLoader loader)
+        public LoadNextLevelState(ISceneLoader loader, string level)
         {
+            levelName = level;
             sceneLoader = loader;
         }
 
         public void Enter()
         {
-            sceneLoader.Load("Level_1");
+            sceneLoader.Load(levelName);
         }
     }
 }
