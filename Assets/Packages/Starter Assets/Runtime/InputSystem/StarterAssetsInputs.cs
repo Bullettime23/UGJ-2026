@@ -12,6 +12,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+        public bool interact;
 
 		public bool crouch;
 
@@ -24,7 +25,7 @@ namespace StarterAssets
 		public bool cursorInputForLook = true;
 
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
@@ -52,6 +53,11 @@ namespace StarterAssets
         {
             CrouchInput(value.isPressed);
         }
+
+		public void OnInteract(InputValue value)
+		{
+			InteractInput(value.isPressed);
+		}
 #endif
 
 
@@ -78,6 +84,11 @@ namespace StarterAssets
 		public void CrouchInput(bool newCrouchState)
 		{
 			crouch = newCrouchState;
+		}
+
+		public void InteractInput(bool newInteractState)
+		{
+			interact = newInteractState;
 		}
 		
 		private void OnApplicationFocus(bool hasFocus)

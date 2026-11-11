@@ -1,21 +1,20 @@
 using CodeBase.InteractionSystem;
+using LevGamekit.Infrastructure.SceneLoader;
+using LevGamekit.Infrastructure.ServiceLocator;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InteractibleTest : MonoBehaviour, IInteractible
 {
-    private Material m_Mat;
-
-    private void Start()
-    {
-        m_Mat = GetComponent<MeshRenderer>().material;
-    }
+    public UnityEvent OnInteract;
     public string GetDescrition()
     {
-        return "Some random description";
+        return "To Main room";
     }
 
     public void Interact()
     {
-        m_Mat.color = new Color(Random.value, Random.value, Random.value);
+        OnInteract.Invoke();
+        AllServices.Container.Single<ISceneLoader>().Load("MainRoom");
     }
 }
