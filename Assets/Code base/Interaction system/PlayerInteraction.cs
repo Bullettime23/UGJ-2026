@@ -1,18 +1,14 @@
 using StarterAssets;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Windows;
 
 namespace CodeBase.InteractionSystem {
     public class PlayerInteraction : MonoBehaviour
     {
-        [SerializeField] private Camera m_MainCamera;
         [SerializeField] private float m_InteractionDistance = 2f;
 
-        [SerializeField] private GameObject m_InteractionUI;
-        [SerializeField] private TextMeshProUGUI m_InteractionText;
-
-        private StarterAssetsInputs m_Input; 
+        private Camera m_MainCamera;
+        private StarterAssetsInputs m_Input;
+        private HUDInteraction m_HUDInteraction;
 
         private IInteractible m_CurrentInteractible;
         private bool m_HasInteractible => m_CurrentInteractible != null;
@@ -32,6 +28,12 @@ namespace CodeBase.InteractionSystem {
                 m_Input.interact = false;
                 Interact();
             }
+        }
+
+        public void Initialize(Camera camera, HUDInteraction HUD)
+        {
+            m_MainCamera = camera;
+            m_HUDInteraction = HUD;
         }
 
         public void Interact()
@@ -58,14 +60,15 @@ namespace CodeBase.InteractionSystem {
 
         }
 
-        private void UpdateInterface() { 
-
-            m_InteractionUI.SetActive(m_HasInteractible);
+        private void UpdateInterface() {
 
             if (m_HasInteractible)
             {
-                m_InteractionText.text = m_CurrentInteractible.GetDescrition();
+                m_HUDInteraction.SetText(m_CurrentInteractible.GetDescrition());
+                m_HUDInteraction.Display();
             }
+            else
+                m_HUDInteraction.Hide();
         }
     }
 }
