@@ -1,5 +1,6 @@
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CodeBase.InteractionSystem {
     public class PlayerInteraction : MonoBehaviour
@@ -12,6 +13,7 @@ namespace CodeBase.InteractionSystem {
 
         private IInteractible m_CurrentInteractible;
         private bool m_HasInteractible => m_CurrentInteractible != null;
+        [HideInInspector] public UnityEvent OnInteract; 
 
         private void Start()
         {
@@ -40,6 +42,7 @@ namespace CodeBase.InteractionSystem {
         {
             if (m_HasInteractible)
             {
+                OnInteract?.Invoke();
                 m_CurrentInteractible.Interact();
             }
         }

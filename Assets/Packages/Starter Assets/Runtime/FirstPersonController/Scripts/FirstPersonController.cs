@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -77,7 +78,11 @@ namespace StarterAssets
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
+        
 
+        // footstep audio 
+        private float _footstepTimer;
+        [HideInInspector] public UnityEvent OnFootstep;
 
 #if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
@@ -236,6 +241,35 @@ namespace StarterAssets
 
             // move the player
             _controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            HandleFootstepEvent();
+        }
+
+        private void HandleFootstepEvent()
+        {
+            var _walkStepInterval = 0.5f;
+            var _sprintStepInterval = 0.3f;
+            var _crouchStepInterval = 0.7f;
+            var isMoving = _input.move != Vector2.zero;
+
+            if (!Grounded || !isMoving || _speed < 0.1f)
+            {
+                _footstepTimer = 0f;
+                return;
+            }
+
+            var stepInterval = _input.sprint
+                ? _sprintStepInterval
+                : Crouched
+                    ? _crouchStepInterval
+                    : _walkStepInterval;
+
+            _footstepTimer += Time.deltaTime;
+
+            if (_footstepTimer >= stepInterval)
+            {
+                OnFootstep?.Invoke();
+                _footstepTimer = 0f;
+            }
         }
 
         private void UpdateControllerCollider()
