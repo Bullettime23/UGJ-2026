@@ -153,6 +153,17 @@ namespace StarterAssets
             CameraRotation();
         }
 
+        public void SetPositionAndRotation(Transform target)
+        {
+            _controller.enabled = false;
+
+            transform.position = target.position;
+            transform.rotation = target.rotation;
+
+            _controller.enabled = true;
+
+        }
+
         private void GroundedCheck()
         {
             // set sphere position, with offset

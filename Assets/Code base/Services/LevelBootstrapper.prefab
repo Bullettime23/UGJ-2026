@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5082769866295413547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4186570282390781221}
+  - component: {fileID: 476219917022026966}
+  - component: {fileID: 4216882515973325038}
+  m_Layer: 0
+  m_Name: LevelBootstrapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4186570282390781221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5082769866295413547}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &476219917022026966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5082769866295413547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be73eb2463c2e84dbd87b6a644695d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PackRush.Services.LevelBootstrapper
+  m_MainCameraPrefab: {fileID: 9005220659476430821, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+  m_CinemachineFollowPrefab: {fileID: 1322753380729825397, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
+  m_HUDInteraction: {fileID: 1027425360447660542, guid: 733dfa2ce862b6d45961096480a2f037, type: 3}
+--- !u!114 &4216882515973325038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5082769866295413547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2947751174ca94a8554686b4c91770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PackRush.Services.LevelInstaller
+  monoBootstrapper: {fileID: 476219917022026966}
+  m_Checkpoint: {fileID: 0}
+  m_PlayerPrefab: {fileID: 2494227681268708383, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+  m_GameInstallerPrefab: {fileID: 7268967517788507855, guid: 0af35db990fd966478f8c65f0ce53401, type: 3}
