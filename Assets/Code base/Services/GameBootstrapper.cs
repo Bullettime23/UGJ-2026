@@ -1,5 +1,4 @@
 using LevGamekit.Infrastructure.EntryPoint;
-using LevGamekit.Infrastructure.SceneLoader;
 using LevGamekit.Infrastructure.ServiceLocator;
 using PackRush.Services.GameStates;
 
