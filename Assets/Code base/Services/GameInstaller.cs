@@ -1,3 +1,5 @@
+using CodeBase.InteractionSystem;
+using CodeBase.InventorySystem;
 using LevGamekit.Infrastructure;
 using LevGamekit.Infrastructure.EntryPoint;
 using LevGamekit.Infrastructure.SceneLoader;
@@ -18,6 +20,7 @@ namespace PackRush.Services
             print("Register services");
             AllServices.Container.RegisterSingle<ISceneLoader>(new SceneLoader(this));
             AllServices.Container.RegisterSingle<IGameStateSwitcher>(new GameStateMachine());
+            AllServices.Container.RegisterSingle<IInventory>(new Inventory());
         }
     }
 }
