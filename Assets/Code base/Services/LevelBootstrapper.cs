@@ -1,16 +1,16 @@
 using CodeBase.InteractionSystem;
 using LevGamekit.Infrastructure.EntryPoint;
 using LevGamekit.Infrastructure.ServiceLocator;
+using LevGamekit.Infrastructure.StateMachine;
 using PackRush.Services.LevelStates;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace PackRush.Services
 {
     public class LevelBootstrapper : MonoBootstrapper
     {
-        [SerializeField] private Transform m_PlayerSpawnPoint;
-        [SerializeField] private CharacterController m_PlayerPrefab;
         [SerializeField] private Camera m_MainCameraPrefab;
         [SerializeField] private CinemachineCamera m_CinemachineFollowPrefab;
 
@@ -21,11 +21,13 @@ namespace PackRush.Services
             levelStateSwitcher = AllServices.Container.Single<ILevelStateSwitcher>();
 
             levelStateSwitcher.AddState(new LevelBootstrapState(
-                m_PlayerSpawnPoint,
-                m_PlayerPrefab,
                 m_MainCameraPrefab,
                 m_CinemachineFollowPrefab,
                 m_HUDInteraction));
+
+            levelStateSwitcher.AddState(new LevelDefaultState());
+
+            levelStateSwitcher.AddState(new LevelPlayerDeathState());
 
             levelStateSwitcher.Enter<LevelBootstrapState>();
         }
