@@ -18,6 +18,7 @@ namespace CodeBase.DamageSystem {
         private int hitPoints;
         private GameObject damageImpactEffect;
 
+        public bool IsInvincible { get; set; } = false;
         public InputActionMap playerActionMap { get; private set; }
 
         private void Start()
@@ -60,6 +61,8 @@ namespace CodeBase.DamageSystem {
 
         public void Kill()
         {
+            if (IsInvincible) return; //skip if invincible mode 
+            
             PlayPlayerHurtSound();
 
             hitPoints = 0;
