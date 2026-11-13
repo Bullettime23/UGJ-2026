@@ -5049,11 +5049,6 @@ Transform:
   - {fileID: 477007056}
   m_Father: {fileID: 1264623408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1153445803 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1195473571902555984, guid: 6751739d5d2c14e44bea8fd664424cf2, type: 3}
-  m_PrefabInstance: {fileID: 5614699108962351758}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1158166517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8901,11 +8896,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5960523930473241176, guid: f71de013cc2be9c4cbc2054ddbf70b02, type: 3}
   m_PrefabInstance: {fileID: 2070432325}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2073134334 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2262338545630596298, guid: 6751739d5d2c14e44bea8fd664424cf2, type: 3}
-  m_PrefabInstance: {fileID: 5614699108962351758}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2073330125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9011,11 +9001,6 @@ Transform:
   - {fileID: 1114913089}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -73.734, z: 0}
---- !u!4 &2085157406 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7338120641743402932, guid: 6751739d5d2c14e44bea8fd664424cf2, type: 3}
-  m_PrefabInstance: {fileID: 5614699108962351758}
-  m_PrefabAsset: {fileID: 0}
 --- !u!65 &2106500656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9213,34 +9198,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorExit_2
       objectReference: {fileID: 0}
-    - target: {fileID: 6618997715922921170, guid: 6751739d5d2c14e44bea8fd664424cf2, type: 3}
-      propertyPath: m_Size.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618997715922921170, guid: 6751739d5d2c14e44bea8fd664424cf2, type: 3}
-      propertyPath: m_Center.y
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7373325809671416468, guid: 6751739d5d2c14e44bea8fd664424cf2, type: 3}
-      propertyPath: m_LockPrefab
-      value: 
-      objectReference: {fileID: 7703565563707485121, guid: 8e57490f6db0db748a53addb841b7701, type: 3}
-    - target: {fileID: 7373325809671416468, guid: 6751739d5d2c14e44bea8fd664424cf2, type: 3}
-      propertyPath: m_LocksSpawnPoints.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7373325809671416468, guid: 6751739d5d2c14e44bea8fd664424cf2, type: 3}
-      propertyPath: 'm_LocksSpawnPoints.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2073134334}
-    - target: {fileID: 7373325809671416468, guid: 6751739d5d2c14e44bea8fd664424cf2, type: 3}
-      propertyPath: 'm_LocksSpawnPoints.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2085157406}
-    - target: {fileID: 7373325809671416468, guid: 6751739d5d2c14e44bea8fd664424cf2, type: 3}
-      propertyPath: 'm_LocksSpawnPoints.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1153445803}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

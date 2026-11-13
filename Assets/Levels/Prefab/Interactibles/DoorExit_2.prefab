@@ -243,8 +243,11 @@ MonoBehaviour:
   m_NoKeysText: Find all the keys and escape!
   m_HasKeysText: Open locks
   m_NoLocksText: Escape the circus!
-  m_LockPrefab: {fileID: 0}
-  m_LocksSpawnPoints: []
+  m_LockPrefab: {fileID: 7703565563707485121, guid: 8e57490f6db0db748a53addb841b7701, type: 3}
+  m_LocksSpawnPoints:
+  - {fileID: 2262338545630596298}
+  - {fileID: 7338120641743402932}
+  - {fileID: 1195473571902555984}
   m_FinishScene: 
 --- !u!65 &6618997715922921170
 BoxCollider:
@@ -265,8 +268,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.47, y: 2.45, z: 0.45}
-  m_Center: {x: 0, y: 1.4, z: 0}
+  m_Size: {x: 2.47, y: 2.5, z: 0.45}
+  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!1 &3804965628518130149
 GameObject:
   m_ObjectHideFlags: 0
