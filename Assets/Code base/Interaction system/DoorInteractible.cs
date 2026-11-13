@@ -4,21 +4,30 @@ using LevGamekit.Infrastructure.ServiceLocator;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class DoorInteractible : MonoBehaviour, IInteractible
-{
-    public UnityEvent OnInteract;
-
-    [SerializeField] private string m_Description;
-    [SerializeField] private string m_LoadSceneName;
-
-    public string GetDescrition()
+namespace CodeBase.InteractionSystem {
+    public class DoorInteractible : MonoBehaviour, IInteractible
     {
-        return m_Description;
-    }
+        public UnityEvent OnInteract;
 
-    public void Interact()
-    {
-        OnInteract.Invoke();
-        AllServices.Container.Single<ISceneLoader>().Load(m_LoadSceneName);
+        [SerializeField] private string m_Description;
+        [SerializeField] private string m_LoadSceneName;
+
+        private ISceneLoader m_SceneLoader;
+
+        private void Start()
+        {
+            m_SceneLoader = AllServices.Container.Single<ISceneLoader>();
+        }
+
+        public string GetDescription()
+        {
+            return m_Description;
+        }
+
+        public void Interact()
+        {
+            OnInteract.Invoke();
+            m_SceneLoader.Load(m_LoadSceneName);
+        }
     }
 }

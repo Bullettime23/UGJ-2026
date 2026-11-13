@@ -67,7 +67,7 @@ namespace CodeBase.InteractionSystem {
 
             if (m_HasInteractible)
             {
-                m_HUDInteraction.SetText(m_CurrentInteractible.GetDescrition());
+                m_HUDInteraction.SetText(m_CurrentInteractible.GetDescription());
                 m_HUDInteraction.Display();
             }
             else

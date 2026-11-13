@@ -4,6 +4,6 @@ namespace CodeBase.InteractionSystem
     {
         void Interact();
 
-        string GetDescrition();
+        string GetDescription();
     }
 }

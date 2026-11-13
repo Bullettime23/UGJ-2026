@@ -28,5 +28,11 @@ namespace CodeBase.InteractionSystem {
             PlayerPrefs.SetInt(PREFS_KEY, CurrentAmount);
             return true;
         }
+
+        public void Reset()
+        {
+            CurrentAmount = 0;
+            PlayerPrefs.SetInt(PREFS_KEY, CurrentAmount);
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace CodeBase.InteractionSystem {
     {
         [SerializeField] private string m_Description = "The key from the main exit";
 
-        public string GetDescrition()
+        public string GetDescription()
         {
             return m_Description;
         }
