@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class InteractibleTest : MonoBehaviour, IInteractible
 {
     public UnityEvent OnInteract;
-    public string GetDescrition()
+    public string GetDescription()
     {
         return "To Main room";
     }
