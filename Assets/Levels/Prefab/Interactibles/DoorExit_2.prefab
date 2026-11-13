@@ -248,7 +248,7 @@ MonoBehaviour:
   - {fileID: 2262338545630596298}
   - {fileID: 7338120641743402932}
   - {fileID: 1195473571902555984}
-  m_FinishScene: 
+  m_FinishScene: WinScreen
 --- !u!65 &6618997715922921170
 BoxCollider:
   m_ObjectHideFlags: 0
