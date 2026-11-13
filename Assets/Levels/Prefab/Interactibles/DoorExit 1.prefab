@@ -187,7 +187,7 @@ Transform:
   m_GameObject: {fileID: 4456551153456514594}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.75017, y: 0, z: 2.99903}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -218,7 +218,7 @@ MonoBehaviour:
   - {fileID: 8611558064678880727}
   - {fileID: 5341861094404691378}
   - {fileID: 4855272592918686825}
-  m_FinishScene: '"Level_1"'
+  m_FinishScene: Level_1
 --- !u!65 &2198538241036879514
 BoxCollider:
   m_ObjectHideFlags: 0
