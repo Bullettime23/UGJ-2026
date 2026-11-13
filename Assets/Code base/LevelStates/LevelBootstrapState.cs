@@ -16,17 +16,21 @@ namespace PackRush.Services.LevelStates
         private Camera m_MainCameraPrefab;
         private CinemachineCamera m_CinemachineFollowPrefab;
 
+        private InventoryUI m_HUDInventory;
+
         private HUDInteraction m_HUDInteraction;
         public LevelBootstrapState(
             Camera mainCameraPrefab,
             CinemachineCamera followCameraPrefab,
-            HUDInteraction HUDInteractionPrefab
+            HUDInteraction HUDInteractionPrefab,
+            InventoryUI HUDInventory
             )
         {
             m_PlayerPrefab = AllServices.Container.Single<PlayerDestructable>();
             m_MainCameraPrefab = mainCameraPrefab;
             m_CinemachineFollowPrefab = followCameraPrefab;
             m_HUDInteraction = HUDInteractionPrefab;
+            m_HUDInventory = HUDInventory;
             m_PlayerSpawnPoint = AllServices.Container.Single<PlayerCheckpoint>();
         }
         public void Enter()
@@ -51,6 +55,7 @@ namespace PackRush.Services.LevelStates
 
             player.GetComponent<PlayerInteraction>().Initialize(cameraMain, HUD_i);
 
+            GameObject.Instantiate(m_HUDInventory);
 
             AllServices.Container.Single<ILevelStateSwitcher>().Exit<LevelBootstrapState>();
 

@@ -15,6 +15,7 @@ namespace PackRush.Services
         [SerializeField] private CinemachineCamera m_CinemachineFollowPrefab;
 
         [SerializeField] private HUDInteraction m_HUDInteraction;
+        [SerializeField] private InventoryUI m_HUDInventoryPrefab;
         private ILevelStateSwitcher levelStateSwitcher;
         public override void Bootstrap()
         {
@@ -23,7 +24,8 @@ namespace PackRush.Services
             levelStateSwitcher.AddState(new LevelBootstrapState(
                 m_MainCameraPrefab,
                 m_CinemachineFollowPrefab,
-                m_HUDInteraction));
+                m_HUDInteraction,
+                m_HUDInventoryPrefab));
 
             levelStateSwitcher.AddState(new LevelDefaultState());
 
