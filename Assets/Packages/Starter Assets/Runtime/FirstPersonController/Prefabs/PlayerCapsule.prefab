@@ -203,7 +203,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 6418180475301049370, guid: 9d7b584ed77ed0e48a5c8ed959a54e8e, type: 2}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.218
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -700,6 +700,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CodeBase.InteractionSystem.PlayerInteraction
   m_InteractionDistance: 2
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2494227681268708383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,6 +716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CodeBase.DamageSystem.PlayerDestructable
   maxHitPoints: 0
+  LastCheckpoint: {fileID: 0}
   Die:
     m_PersistentCalls:
       m_Calls: []
@@ -720,6 +724,3 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   damageSound: {fileID: 0}
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []

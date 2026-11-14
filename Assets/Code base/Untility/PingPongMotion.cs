@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PingPongMotion : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PingPongMotion : MonoBehaviour
 
     private bool m_IsForward;
     private float m_StartTimer;
+    public UnityEvent<bool> OnWentForward;
 
     private void Start()
     {
@@ -37,6 +39,8 @@ public class PingPongMotion : MonoBehaviour
             if (Vector3.Distance(m_Target.transform.position, m_End.position) < 0.5f)
             {
                 m_IsForward = false;
+                Debug.Log("goin backward");
+                OnWentForward?.Invoke(false);
             }
 
         }
@@ -47,6 +51,10 @@ public class PingPongMotion : MonoBehaviour
             if (Vector3.Distance(m_Target.transform.position, m_Start.position) < 0.5f)
             {
                 m_IsForward = true;
+                
+                OnWentForward?.Invoke(true);
+
+
             }
         }
 
