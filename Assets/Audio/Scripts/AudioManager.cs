@@ -2,16 +2,16 @@ using com.cyborgAssets.inspectorButtonPro;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour, IAudioManager
 {
     [Header("SFX Audio")]
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioSource uiSource;
-    
-    
+
+
     [Header("UI sounds")]
     public AudioClip deathClip;
-    
+
     [Header("Mixer")]
     [SerializeField] private AudioMixer mixer;
 
@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
         uiSource.pitch = Random.Range(0.95f, 1.05f);
         PlayUI(deathClip);
     }
-    
+
     public void SetVolume(string parameter, float value)
     {
         float db = value <= 0.0001f
