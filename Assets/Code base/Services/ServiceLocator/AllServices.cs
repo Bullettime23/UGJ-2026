@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace LevGamekit.Infrastructure.ServiceLocator
 {
@@ -11,6 +12,11 @@ namespace LevGamekit.Infrastructure.ServiceLocator
 
         public void RegisterSingle<TypeService>(TypeService implementation) where TypeService : class, IService
         {
+            if (services.ContainsKey(typeof(TypeService)))
+            {
+                Debug.Log($"Service {typeof(TypeService)} of service has already been added");
+                return;
+            }
             services.Add(typeof(TypeService), implementation);
         }
         public void Unregister<TypeService>() where TypeService : class, IService

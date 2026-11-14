@@ -4,6 +4,7 @@ using CodeBase.InteractionSystem;
 using CodeBase.Player;
 using LevGamekit.Infrastructure.ServiceLocator;
 using LevGamekit.Infrastructure.StateMachine;
+using StarterAssets;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -15,7 +16,6 @@ namespace PackRush.Services.LevelStates
         private PlayerDestructable m_PlayerPrefab;
         private Camera m_MainCameraPrefab;
         private CinemachineCamera m_CinemachineFollowPrefab;
-        private AudioManager m_AudioManagerPrefab;
 
         private InventoryUI m_HUDInventory;
         private HUDInteraction m_HUDInteraction;
@@ -23,8 +23,7 @@ namespace PackRush.Services.LevelStates
             Camera mainCameraPrefab,
             CinemachineCamera followCameraPrefab,
             HUDInteraction HUDInteractionPrefab,
-            InventoryUI HUDInventory,
-            AudioManager audioManagerPrefab
+            InventoryUI HUDInventory
             )
         {
             m_PlayerPrefab = AllServices.Container.Single<PlayerDestructable>();
@@ -33,7 +32,6 @@ namespace PackRush.Services.LevelStates
             m_HUDInteraction = HUDInteractionPrefab;
             m_HUDInventory = HUDInventory;
             m_PlayerSpawnPoint = AllServices.Container.Single<PlayerCheckpoint>();
-            m_AudioManagerPrefab = audioManagerPrefab;
         }
         public void Enter()
         {
@@ -43,18 +41,15 @@ namespace PackRush.Services.LevelStates
             HUDInteraction HUD_i = GameObject.Instantiate(m_HUDInteraction).GetComponent<HUDInteraction>();
             Camera cameraMain = GameObject.Instantiate(m_MainCameraPrefab);
 
-            IAudioManager audioManager = GameObject.Instantiate(m_AudioManagerPrefab);
-            AllServices.Container.RegisterSingle<IAudioManager>(audioManager);
-
-
             PlayerDestructable player = GameObject.Instantiate(m_PlayerPrefab);
 
             // Switch prefab to game object
             AllServices.Container.Unregister<PlayerDestructable>();
             AllServices.Container.RegisterSingle<PlayerDestructable>(player);
 
-            player.transform.position = m_PlayerSpawnPoint.transform.position;
-            player.transform.rotation = m_PlayerSpawnPoint.transform.rotation;
+            player.LastCheckpoint = m_PlayerSpawnPoint;
+            player.GetComponent<FirstPersonController>().SetPositionAndRotation(m_PlayerSpawnPoint.transform);
+
 
             CinemachineCamera followCamera = GameObject.Instantiate(m_CinemachineFollowPrefab).GetComponent<CinemachineCamera>();
             followCamera.Target.TrackingTarget = player.GetComponentInChildren<PlayerCameraMount>().transform;

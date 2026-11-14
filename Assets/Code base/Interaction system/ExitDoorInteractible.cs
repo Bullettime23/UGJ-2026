@@ -19,6 +19,8 @@ namespace CodeBase.InteractionSystem
     /// </summary>
     public class ExitDoorInteractible : MonoBehaviour, IInteractible
     {
+        private const int INITIAL_LOCKS_AMOUNT = 3;
+
         private const string PREFS_LOCKS_KEY = "amountOfExitLocks";
         public UnityEvent OnInteract;
 
@@ -41,6 +43,7 @@ namespace CodeBase.InteractionSystem
         {
             m_PlayerInventory = AllServices.Container.Single<IInventory>();
             m_SceneLoader = AllServices.Container.Single<ISceneLoader>();
+
             CreateLocks();
         }
 
@@ -49,9 +52,9 @@ namespace CodeBase.InteractionSystem
         {
             m_LocksOnTheDoor = new List<Lock>();
 
-            int locksAmount = PlayerPrefs.GetInt(PREFS_LOCKS_KEY, 3);
+            //int locksAmount = PlayerPrefs.GetInt(PREFS_LOCKS_KEY, 3);
 
-            for (int i = 0; i < locksAmount; i++)
+            for (int i = 0; i < INITIAL_LOCKS_AMOUNT; i++)
             {
                 Lock nextLock = Instantiate(m_LockPrefab, transform);
                 nextLock.transform.position = m_LocksSpawnPoints[i].position;
@@ -68,13 +71,14 @@ namespace CodeBase.InteractionSystem
 
             m_LocksOnTheDoor.Remove(lastLock);
 
+
             // Reduce locks number in memory;
 
-            int locksAmount = PlayerPrefs.GetInt(PREFS_LOCKS_KEY, 3);
+            //int locksAmount = PlayerPrefs.GetInt(PREFS_LOCKS_KEY, 3);
 
-            locksAmount--;
+            //locksAmount--;
 
-            PlayerPrefs.SetInt(PREFS_LOCKS_KEY, locksAmount);
+            //PlayerPrefs.SetInt(PREFS_LOCKS_KEY, locksAmount);
         }
         #endregion
 

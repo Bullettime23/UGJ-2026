@@ -1,4 +1,5 @@
 using CodeBase.Player;
+using LevGamekit.Infrastructure.SceneLoader;
 using LevGamekit.Infrastructure.ServiceLocator;
 using System.Collections;
 using UnityEngine;
@@ -20,10 +21,12 @@ namespace CodeBase.DamageSystem {
         public bool IsInvincible { get; set; } = false;
         public InputActionMap playerActionMap { get; private set; }
         private IAudioManager _audioManager;
+        private ISceneLoader _sceneLoader;
 
         private void Awake()
         {
             _audioManager = AllServices.Container.Single<IAudioManager>();
+            _sceneLoader = AllServices.Container.Single<ISceneLoader>();
         }
 
         private void Start()
@@ -78,15 +81,19 @@ namespace CodeBase.DamageSystem {
             if (LastCheckpoint != null)
             {
                 playerActionMap.Disable();
-
-                IEnumerator RespawnTimeout()
-                {
-                    yield return new WaitForSeconds(0.5f);
-                    LastCheckpoint.Respawn(this);
-                }
-
-                StartCoroutine(RespawnTimeout());
             }
+            OnDeath();
+        }
+
+        private void OnDeath()
+        {
+            IEnumerator RespawnTimeout()
+            {
+                yield return new WaitForSeconds(0.5f);
+                LastCheckpoint.Respawn(this);
+            }
+
+            StartCoroutine(RespawnTimeout());
         }
 
         public int GetHitpoints()
