@@ -1,6 +1,6 @@
 using CodeBase.InventorySystem;
 using System;
-using UnityEngine;
+
 namespace CodeBase.InteractionSystem {
     public class Inventory : IInventory
     {
@@ -13,7 +13,8 @@ namespace CodeBase.InteractionSystem {
 
         public Inventory()
         {
-            CurrentAmount = PlayerPrefs.GetInt(PREFS_KEY, 0);
+            //CurrentAmount = PlayerPrefs.GetInt(PREFS_KEY, 0);
+            CurrentAmount = 0;
         }
 
         public void PutKeyToInventory()
@@ -21,7 +22,7 @@ namespace CodeBase.InteractionSystem {
             CurrentAmount++;
             OnKeysAmountChange(this, CurrentAmount);
 
-            PlayerPrefs.SetInt(PREFS_KEY, CurrentAmount);
+            //PlayerPrefs.SetInt(PREFS_KEY, CurrentAmount);
         }
         public bool DragKeysFromInventory(int amount)
         {
@@ -33,7 +34,7 @@ namespace CodeBase.InteractionSystem {
             CurrentAmount -= amount;
             OnKeysAmountChange(this, CurrentAmount);
 
-            PlayerPrefs.SetInt(PREFS_KEY, CurrentAmount);
+            //PlayerPrefs.SetInt(PREFS_KEY, CurrentAmount);
             return true;
         }
 
@@ -42,7 +43,7 @@ namespace CodeBase.InteractionSystem {
             CurrentAmount = 0;
             OnKeysAmountChange(this, CurrentAmount);
 
-            PlayerPrefs.SetInt(PREFS_KEY, CurrentAmount);
+            //PlayerPrefs.SetInt(PREFS_KEY, CurrentAmount);
         }
     }
 }

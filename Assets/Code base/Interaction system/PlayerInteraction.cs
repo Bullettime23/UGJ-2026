@@ -1,3 +1,4 @@
+using LevGamekit.Infrastructure.ServiceLocator;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,6 +12,8 @@ namespace CodeBase.InteractionSystem {
         private StarterAssetsInputs m_Input;
         private HUDInteraction m_HUDInteraction;
 
+        private IUINote m_NoteUI;
+
         private IInteractible m_CurrentInteractible;
         private bool m_HasInteractible => m_CurrentInteractible != null;
         [HideInInspector] public UnityEvent OnInteract; 
@@ -18,6 +21,8 @@ namespace CodeBase.InteractionSystem {
         private void Start()
         {
             m_Input = GetComponent<StarterAssetsInputs>();
+
+            m_NoteUI = AllServices.Container.Single<IUINote>();
         }
 
         private void Update()
@@ -27,8 +32,16 @@ namespace CodeBase.InteractionSystem {
 
             if (m_Input.interact)
             {
+                if (m_NoteUI.IsOpen)
+                {
+                    m_NoteUI.Hide();
+                    m_Input.interact = false;
+
+                    return;
+                }
                 m_Input.interact = false;
                 Interact();
+
             }
         }
 

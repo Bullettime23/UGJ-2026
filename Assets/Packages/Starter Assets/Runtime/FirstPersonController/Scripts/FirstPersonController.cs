@@ -155,12 +155,14 @@ namespace StarterAssets
 
         public void SetPositionAndRotation(Transform target)
         {
-            _controller.enabled = false;
+            if (_controller != null)
+                _controller.enabled = false;
 
             transform.position = target.position;
             transform.rotation = target.rotation;
 
-            _controller.enabled = true;
+            if (_controller != null)
+                _controller.enabled = true;
 
         }
 

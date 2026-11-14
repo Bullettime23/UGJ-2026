@@ -1,10 +1,8 @@
 using CodeBase.InteractionSystem;
 using LevGamekit.Infrastructure.EntryPoint;
 using LevGamekit.Infrastructure.ServiceLocator;
-using LevGamekit.Infrastructure.StateMachine;
 using PackRush.Services.LevelStates;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace PackRush.Services
@@ -16,7 +14,6 @@ namespace PackRush.Services
 
         [SerializeField] private HUDInteraction m_HUDInteraction;
         [SerializeField] private InventoryUI m_HUDInventoryPrefab;
-        [SerializeField] private AudioManager m_AudioManagerPrefab;
         private ILevelStateSwitcher levelStateSwitcher;
         public override void Bootstrap()
         {
@@ -26,8 +23,7 @@ namespace PackRush.Services
                 m_MainCameraPrefab,
                 m_CinemachineFollowPrefab,
                 m_HUDInteraction,
-                m_HUDInventoryPrefab,
-                m_AudioManagerPrefab
+                m_HUDInventoryPrefab
                 ));
 
             levelStateSwitcher.AddState(new LevelDefaultState());

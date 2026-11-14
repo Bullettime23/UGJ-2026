@@ -1,14 +1,17 @@
 using CodeBase.Player;
+using LevGamekit.Infrastructure.SceneLoader;
 using LevGamekit.Infrastructure.ServiceLocator;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace CodeBase.DamageSystem {
+namespace CodeBase.DamageSystem
+{
     public class PlayerDestructable : MonoBehaviour, IService
     {
         [SerializeField] private int maxHitPoints;
+        [SerializeField] private int lifesLeft = 7;
         public PlayerCheckpoint LastCheckpoint;
 
         public UnityEvent Die;
@@ -20,15 +23,17 @@ namespace CodeBase.DamageSystem {
         public bool IsInvincible { get; set; } = false;
         public InputActionMap playerActionMap { get; private set; }
         private IAudioManager _audioManager;
+        private ISceneLoader _sceneLoader;
 
         private void Awake()
         {
             _audioManager = AllServices.Container.Single<IAudioManager>();
+            _sceneLoader = AllServices.Container.Single<ISceneLoader>();
         }
 
         private void Start()
         {
-            
+
             hitPoints = maxHitPoints;
             ChangeHitpoints.Invoke();
 
@@ -68,7 +73,7 @@ namespace CodeBase.DamageSystem {
         public void Kill()
         {
             if (IsInvincible) return; //skip if invincible mode 
-            
+
             PlayPlayerHurtSound();
 
             hitPoints = 0;
@@ -78,6 +83,15 @@ namespace CodeBase.DamageSystem {
             if (LastCheckpoint != null)
             {
                 playerActionMap.Disable();
+            }
+            OnDeath();
+        }
+
+        private void OnDeath()
+        {
+            lifesLeft--;
+            if (lifesLeft != 0)
+            {
 
                 IEnumerator RespawnTimeout()
                 {
@@ -86,7 +100,11 @@ namespace CodeBase.DamageSystem {
                 }
 
                 StartCoroutine(RespawnTimeout());
+
+                return;
             }
+
+            _sceneLoader.Load("GameOverScreen");
         }
 
         public int GetHitpoints()

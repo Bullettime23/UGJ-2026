@@ -58,3 +58,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PackRush.Services.GameInstaller
   monoBootstrapper: {fileID: 2511914846746143056}
+  m_AudioManagerPrefab: {fileID: 1565084662795481612, guid: f3745e888117b114e9f18ed8a0ed47e9, type: 3}

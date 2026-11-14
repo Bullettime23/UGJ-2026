@@ -15,6 +15,7 @@ namespace PackRush.Services
         [SerializeField] private PlayerDestructable m_PlayerPrefab;
 
         [SerializeField] private GameInstaller m_GameInstallerPrefab;
+        [SerializeField] private UINote m_UINotePrefab;
 
         protected override void InstallBindings()
         {
@@ -29,6 +30,10 @@ namespace PackRush.Services
             AllServices.Container.RegisterSingle<ILevelStateSwitcher>(new LevelStateMachine());
             AllServices.Container.RegisterSingle(m_Checkpoint);
             AllServices.Container.RegisterSingle(m_PlayerPrefab);
+
+            // TODO: Move to the DI container
+            UINote noteUI = GameObject.Instantiate(m_UINotePrefab);
+            AllServices.Container.RegisterSingle<IUINote>(noteUI);
         }
 
         private void OnDestroy()
@@ -36,6 +41,7 @@ namespace PackRush.Services
             AllServices.Container.Unregister<ILevelStateSwitcher>();
             AllServices.Container.Unregister<PlayerCheckpoint>();
             AllServices.Container.Unregister<PlayerDestructable>();
+            AllServices.Container.Unregister<IUINote>();
         }
 
         /// <summary>
