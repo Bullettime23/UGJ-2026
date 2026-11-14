@@ -1,3 +1,4 @@
+using System;
 using CodeBase.Player;
 using LevGamekit.Infrastructure.ServiceLocator;
 using PackRush.Services.LevelStates;
@@ -20,9 +21,16 @@ namespace CodeBase.DamageSystem {
 
         public bool IsInvincible { get; set; } = false;
         public InputActionMap playerActionMap { get; private set; }
+        private AudioManager _audioManager;
+
+        private void Awake()
+        {
+            _audioManager = FindFirstObjectByType<AudioManager>();
+        }
 
         private void Start()
         {
+            
             hitPoints = maxHitPoints;
             ChangeHitpoints.Invoke();
 
@@ -67,7 +75,7 @@ namespace CodeBase.DamageSystem {
 
             hitPoints = 0;
             Die.Invoke();
-
+            _audioManager.PlayDeathSFX();
 
             if (LastCheckpoint != null)
             {
