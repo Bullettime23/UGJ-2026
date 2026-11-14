@@ -9,6 +9,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource uiSource;
     
     
+    [Header("UI sounds")]
+    public AudioClip deathClip;
+    
     [Header("Mixer")]
     [SerializeField] private AudioMixer mixer;
 
@@ -20,13 +23,19 @@ public class AudioManager : MonoBehaviour
     }
 
     [ProButton]
-    public void PlayUI(AudioClip clip, float volume = 1f)
+    private void PlayUI(AudioClip clip, float volume = 1f)
     {
         if (clip != null)
             uiSource.PlayOneShot(clip, volume);
     }
-    
 
+
+    public void PlayDeathSFX()
+    {
+        uiSource.pitch = Random.Range(0.95f, 1.05f);
+        PlayUI(deathClip);
+    }
+    
     public void SetVolume(string parameter, float value)
     {
         float db = value <= 0.0001f

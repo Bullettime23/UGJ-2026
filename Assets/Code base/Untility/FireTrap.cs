@@ -1,5 +1,6 @@
 using CodeBase.DamageSystem;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CodeBase.Utility
 {
@@ -19,6 +20,8 @@ namespace CodeBase.Utility
             m_WorkTimer,
             m_CooldownTimer;
         private bool m_IsWorking = false;
+
+        [HideInInspector] public UnityEvent OnFireEnabled;
         void Start()
         {
             m_StartTimer = m_StartTimeout;
@@ -75,6 +78,7 @@ namespace CodeBase.Utility
             m_IsWorking = true;
 
             m_CooldownTimer = m_WorkInterval;
+            OnFireEnabled?.Invoke();
         }
 
         private void DisableFire()
