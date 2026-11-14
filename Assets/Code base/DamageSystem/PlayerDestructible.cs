@@ -6,10 +6,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace CodeBase.DamageSystem {
+namespace CodeBase.DamageSystem
+{
     public class PlayerDestructable : MonoBehaviour, IService
     {
         [SerializeField] private int maxHitPoints;
+        [SerializeField] private int lifesLeft = 7;
         public PlayerCheckpoint LastCheckpoint;
 
         public UnityEvent Die;
@@ -31,7 +33,7 @@ namespace CodeBase.DamageSystem {
 
         private void Start()
         {
-            
+
             hitPoints = maxHitPoints;
             ChangeHitpoints.Invoke();
 
@@ -71,7 +73,7 @@ namespace CodeBase.DamageSystem {
         public void Kill()
         {
             if (IsInvincible) return; //skip if invincible mode 
-            
+
             PlayPlayerHurtSound();
 
             hitPoints = 0;
@@ -87,13 +89,22 @@ namespace CodeBase.DamageSystem {
 
         private void OnDeath()
         {
-            IEnumerator RespawnTimeout()
+            lifesLeft--;
+            if (lifesLeft != 0)
             {
-                yield return new WaitForSeconds(0.5f);
-                LastCheckpoint.Respawn(this);
+
+                IEnumerator RespawnTimeout()
+                {
+                    yield return new WaitForSeconds(0.5f);
+                    LastCheckpoint.Respawn(this);
+                }
+
+                StartCoroutine(RespawnTimeout());
+
+                return;
             }
 
-            StartCoroutine(RespawnTimeout());
+            _sceneLoader.Load("GameOverScreen");
         }
 
         public int GetHitpoints()

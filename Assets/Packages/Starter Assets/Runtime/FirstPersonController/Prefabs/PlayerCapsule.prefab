@@ -187,9 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf3e5076b02125542abed6878888e39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FootstepAudio
-  walkStepInterval: 0.5
-  sprintStepInterval: 0.3
-  crouchStepInterval: 0.7
 --- !u!82 &6326209600891518028
 AudioSource:
   m_ObjectHideFlags: 0
@@ -716,6 +713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CodeBase.DamageSystem.PlayerDestructable
   maxHitPoints: 0
+  lifesLeft: 7
   LastCheckpoint: {fileID: 0}
   Die:
     m_PersistentCalls:
