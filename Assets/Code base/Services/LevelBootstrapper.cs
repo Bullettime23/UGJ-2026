@@ -16,6 +16,7 @@ namespace PackRush.Services
 
         [SerializeField] private HUDInteraction m_HUDInteraction;
         [SerializeField] private InventoryUI m_HUDInventoryPrefab;
+        [SerializeField] private AudioManager m_AudioManagerPrefab;
         private ILevelStateSwitcher levelStateSwitcher;
         public override void Bootstrap()
         {
@@ -25,7 +26,9 @@ namespace PackRush.Services
                 m_MainCameraPrefab,
                 m_CinemachineFollowPrefab,
                 m_HUDInteraction,
-                m_HUDInventoryPrefab));
+                m_HUDInventoryPrefab,
+                m_AudioManagerPrefab
+                ));
 
             levelStateSwitcher.AddState(new LevelDefaultState());
 

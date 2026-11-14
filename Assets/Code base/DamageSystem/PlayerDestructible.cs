@@ -1,7 +1,5 @@
-using System;
 using CodeBase.Player;
 using LevGamekit.Infrastructure.ServiceLocator;
-using PackRush.Services.LevelStates;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -21,11 +19,11 @@ namespace CodeBase.DamageSystem {
 
         public bool IsInvincible { get; set; } = false;
         public InputActionMap playerActionMap { get; private set; }
-        private AudioManager _audioManager;
+        private IAudioManager _audioManager;
 
         private void Awake()
         {
-            _audioManager = FindFirstObjectByType<AudioManager>();
+            _audioManager = AllServices.Container.Single<IAudioManager>();
         }
 
         private void Start()

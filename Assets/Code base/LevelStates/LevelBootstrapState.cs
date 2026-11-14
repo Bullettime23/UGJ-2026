@@ -15,15 +15,16 @@ namespace PackRush.Services.LevelStates
         private PlayerDestructable m_PlayerPrefab;
         private Camera m_MainCameraPrefab;
         private CinemachineCamera m_CinemachineFollowPrefab;
+        private AudioManager m_AudioManagerPrefab;
 
         private InventoryUI m_HUDInventory;
-
         private HUDInteraction m_HUDInteraction;
         public LevelBootstrapState(
             Camera mainCameraPrefab,
             CinemachineCamera followCameraPrefab,
             HUDInteraction HUDInteractionPrefab,
-            InventoryUI HUDInventory
+            InventoryUI HUDInventory,
+            AudioManager audioManagerPrefab
             )
         {
             m_PlayerPrefab = AllServices.Container.Single<PlayerDestructable>();
@@ -32,6 +33,7 @@ namespace PackRush.Services.LevelStates
             m_HUDInteraction = HUDInteractionPrefab;
             m_HUDInventory = HUDInventory;
             m_PlayerSpawnPoint = AllServices.Container.Single<PlayerCheckpoint>();
+            m_AudioManagerPrefab = audioManagerPrefab;
         }
         public void Enter()
         {
@@ -40,6 +42,10 @@ namespace PackRush.Services.LevelStates
 
             HUDInteraction HUD_i = GameObject.Instantiate(m_HUDInteraction).GetComponent<HUDInteraction>();
             Camera cameraMain = GameObject.Instantiate(m_MainCameraPrefab);
+
+            IAudioManager audioManager = GameObject.Instantiate(m_AudioManagerPrefab);
+            AllServices.Container.RegisterSingle<IAudioManager>(audioManager);
+
 
             PlayerDestructable player = GameObject.Instantiate(m_PlayerPrefab);
 
