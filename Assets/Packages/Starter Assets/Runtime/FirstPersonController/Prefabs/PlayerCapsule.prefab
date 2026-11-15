@@ -722,3 +722,4 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   damageSound: {fileID: 0}
+  fadeEffect: {fileID: 11400000, guid: bd9dd94137227f44d81ac8e3d539c6ee, type: 2}

@@ -2,6 +2,8 @@ using CodeBase.Player;
 using LevGamekit.Infrastructure.SceneLoader;
 using LevGamekit.Infrastructure.ServiceLocator;
 using System.Collections;
+using PixeLadder.EasyTransition;
+using PixeLadder.EasyTransition.Effects;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -24,11 +26,13 @@ namespace CodeBase.DamageSystem
         public InputActionMap playerActionMap { get; private set; }
         private IAudioManager _audioManager;
         private ISceneLoader _sceneLoader;
+        [SerializeField] private TransitionEffect fadeEffect;
 
         private void Awake()
         {
             _audioManager = AllServices.Container.Single<IAudioManager>();
             _sceneLoader = AllServices.Container.Single<ISceneLoader>();
+            
         }
 
         private void Start()
@@ -96,7 +100,9 @@ namespace CodeBase.DamageSystem
                 IEnumerator RespawnTimeout()
                 {
                     yield return new WaitForSeconds(0.5f);
+                    SceneTransitioner.Instance.PlayTransition( null, fadeEffect);
                     LastCheckpoint.Respawn(this);
+                  ;
                 }
 
                 StartCoroutine(RespawnTimeout());
