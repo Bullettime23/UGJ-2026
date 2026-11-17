@@ -5,6 +5,7 @@ namespace CodeBase.DamageSystem {
     {
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log("collided  with " + other.name);
             PlayerDestructable destructable = other.GetComponent<PlayerDestructable>();
 
             if (destructable != null)

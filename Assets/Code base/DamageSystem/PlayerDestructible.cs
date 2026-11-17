@@ -32,7 +32,7 @@ namespace CodeBase.DamageSystem
         {
             _audioManager = AllServices.Container.Single<IAudioManager>();
             _sceneLoader = AllServices.Container.Single<ISceneLoader>();
-            
+            SceneTransitioner.Instance.PlayTransition( null, fadeEffect);
         }
 
         private void Start()
