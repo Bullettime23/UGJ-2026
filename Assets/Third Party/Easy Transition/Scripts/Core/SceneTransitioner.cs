@@ -56,6 +56,7 @@
 
         private void Awake()
         {
+            Debug.Log("what happened to me?");
             if (Instance == null)
             {
                 Instance = this;

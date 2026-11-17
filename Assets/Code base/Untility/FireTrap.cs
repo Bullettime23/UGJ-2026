@@ -24,9 +24,9 @@ namespace CodeBase.Utility
         [HideInInspector] public UnityEvent OnFireEnabled;
         void Start()
         {
-            m_StartTimer = m_StartTimeout;
-            m_WorkTimer = m_WorkDuration;
-            m_CooldownTimer = m_WorkInterval;
+            m_StartTimer = m_StartTimeout + Random.Range(-0.5f, 0.5f);
+            m_WorkTimer = m_WorkDuration + Random.Range(-0.5f, 0.5f);
+            m_CooldownTimer = m_WorkInterval + Random.Range(-0.5f, 0.5f);
 
             DisableFire();
         }

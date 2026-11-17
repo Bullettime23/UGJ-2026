@@ -32,15 +32,19 @@ namespace CodeBase.DamageSystem
         {
             _audioManager = AllServices.Container.Single<IAudioManager>();
             _sceneLoader = AllServices.Container.Single<ISceneLoader>();
-            SceneTransitioner.Instance.PlayTransition( null, fadeEffect);
+          
         }
 
         private void Start()
         {
+            if(SceneTransitioner.Instance == null)
+            {
+                Debug.LogError("SceneTransitioner instance is null. Make sure you have a SceneTransitioner in the scene.");
+            }
+            SceneTransitioner.Instance.PlayTransition( null, fadeEffect);
 
             hitPoints = maxHitPoints;
             ChangeHitpoints.Invoke();
-
             playerActionMap = GetComponent<PlayerInput>().actions.FindActionMap("Player");
         }
         public void ApplyDamage(int damage)
